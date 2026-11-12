@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Email Copy Extension</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="popup" aria-labelledby="title">
+      <header class="header">
+        <div class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4.5 6.75h15A1.75 1.75 0 0 1 21.25 8.5v9A1.75 1.75 0 0 1 19.5 19.25h-15A1.75 1.75 0 0 1 2.75 17.5v-9A1.75 1.75 0 0 1 4.5 6.75Z" stroke="currentColor" stroke-width="1.7"/><path d="m3.5 8 8.5 6 8.5-6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="heading"><h1 id="title">Email Copy</h1><p>Your addresses, one click away</p></div>
+        <div class="header-actions">
+          <button class="settings-button" id="settings-toggle" type="button" aria-label="Appearance settings" aria-expanded="false" aria-controls="appearance-settings" title="Appearance settings">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8.4 2.8h3.2l.4 1.7c.4.1.8.3 1.2.5l1.5-.9 2.3 2.3-.9 1.5c.2.4.4.8.5 1.2l1.7.4v3.2l-1.7.4c-.1.4-.3.8-.5 1.2l.9 1.5-2.3 2.3-1.5-.9c-.4.2-.8.4-1.2.5l-.4 1.7H8.4L8 17.7c-.4-.1-.8-.3-1.2-.5l-1.5.9L3 15.8l.9-1.5c-.2-.4-.4-.8-.5-1.2l-1.7-.4V9.5l1.7-.4c.1-.4.3-.8.5-1.2L3 6.4l2.3-2.3 1.5.9c.4-.2.8-.4 1.2-.5l.4-1.7Z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/><circle cx="10" cy="11.1" r="2.5" stroke="currentColor" stroke-width="1.25"/></svg>
+          </button>
+          <button class="lock-button" id="lock-toggle" type="button" aria-label="Lock email editing" aria-pressed="false" title="Lock email editing">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="4" y="8.5" width="12" height="9" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M6.5 8.5V6a3.5 3.5 0 0 1 6.7-1.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <section class="settings-panel" id="appearance-settings" aria-label="Appearance settings" hidden>
+        <h2>Appearance</h2>
+        <div class="setting-row">
+          <span class="setting-label">Mode</span>
+          <div class="mode-switch" role="group" aria-label="Color mode">
+            <button type="button" class="mode-button" data-mode="light" aria-pressed="false">Light</button>
+            <button type="button" class="mode-button" data-mode="dark" aria-pressed="true">Dark</button>
+          </div>
+        </div>
+        <div class="setting-row">
+          <span class="setting-label">Text color</span>
+          <div class="mode-switch text-mode-switch" role="group" aria-label="Text color mode">
+            <button type="button" class="mode-button" data-text-mode="theme" aria-pressed="false">Theme color</button>
+            <button type="button" class="mode-button" data-text-mode="basic" aria-pressed="true">Basic</button>
+          </div>
+        </div>
+        <label class="setting-row color-setting" for="theme-color">
+          <span class="setting-label">Theme color</span>
+          <input id="theme-color" type="color" value="#A88BFF" aria-label="Choose theme color">
+        </label>
+        <label class="setting-row hide-setting" for="show-hide-buttons">
+          <span class="setting-label">Show hide buttons</span>
+          <input id="show-hide-buttons" type="checkbox" checked>
+        </label>
+      </section>
+
+      <section class="email-section" aria-labelledby="list-title">
+        <div class="section-heading"><h2 id="list-title">Email addresses</h2><span class="count" id="email-count">1</span></div>
+        <div id="email-list" class="email-list"></div>
+        <button class="add-button" id="add-email" type="button"><span class="plus" aria-hidden="true">+</span><span>Add another email</span></button>
+      </section>
+
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+      <footer class="footer"><span class="footer-dot" aria-hidden="true"></span>Stored on this device</footer>
+    </main>
+    <dialog class="confirm-dialog" id="confirm-remove" aria-labelledby="confirm-remove-title">
+      <h2 id="confirm-remove-title">Remove email?</h2>
+      <p>Are you sure you want to remove this email address?</p>
+      <div class="dialog-actions">
+        <button class="dialog-cancel" id="cancel-remove" type="button">Cancel</button>
+        <button class="dialog-confirm" id="confirm-remove-button" type="button">Remove</button>
+      </div>
+    </dialog>
+    <script src="popup.js"></script>
+  </body>
+</html>
