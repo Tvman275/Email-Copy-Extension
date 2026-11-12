@@ -30,3 +30,5 @@ A compact Chromium extension for keeping email addresses in the toolbar popup an
 - Close and reopen the popup to confirm addresses and selection persist. Remove an entry and confirm the remaining list still works.
 
 The popup uses no remote code, external libraries, or network access.
+
+_Notice:This is Made with Codex And ChatGPT_
