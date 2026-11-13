@@ -10,7 +10,7 @@
     <main class="popup" aria-labelledby="title">
       <header class="header">
         <div class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M4.5 6.75h15A1.75 1.75 0 0 1 21.25 8.5v9A1.75 1.75 0 0 1 19.5 19.25h-15A1.75 1.75 0 0 1 2.75 17.5v-9A1.75 1.75 0 0 1 4.5 6.75Z" stroke="currentColor" stroke-width="1.7"/><path d="m3.5 8 8.5 6 8.5-6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <img id="brand-icon" src="icons/exotic-128.png" alt="">
         </div>
         <div class="heading"><h1 id="title">Email Copy</h1><p>Your addresses, one click away</p></div>
         <div class="header-actions">
@@ -33,6 +33,13 @@
           </div>
         </div>
         <div class="setting-row">
+          <span class="setting-label">Extension icon</span>
+          <div class="mode-switch" role="group" aria-label="Toolbar icon style">
+            <button type="button" class="mode-button icon-style-button" data-icon-style="exotic" aria-pressed="true">Exotic</button>
+            <button type="button" class="mode-button icon-style-button" data-icon-style="simple" aria-pressed="false">Simple</button>
+          </div>
+        </div>
+        <div class="setting-row">
           <span class="setting-label">Text color</span>
           <div class="mode-switch text-mode-switch" role="group" aria-label="Text color mode">
             <button type="button" class="mode-button" data-text-mode="theme" aria-pressed="false">Theme color</button>
@@ -43,15 +50,97 @@
           <span class="setting-label">Theme color</span>
           <input id="theme-color" type="color" value="#A88BFF" aria-label="Choose theme color">
         </label>
-        <label class="setting-row hide-setting" for="show-hide-buttons">
+        <div class="setting-row color-setting" >
+          <label class="setting-label" for="background-color">Background color</label>
+          <div class="color-control-group">
+            <input id="background-color" type="color" value="#1D1B20" aria-label="Choose background color">
+            <button class="reset-color-button" id="reset-background" type="button" title="Use the mode default">Reset</button>
+          </div>
+        </div>
+        <label class="setting-row color-setting" for="stroke-color">
+          <span class="setting-label">Stroke color</span>
+          <input id="stroke-color" type="color" value="#787880" aria-label="Choose stroke color">
+        </label>
+        <label class="setting-row hide-setting" for="theme-buttons">
+          <span class="setting-label">Theme-colored buttons</span>
+          <input id="theme-buttons" type="checkbox">
+        </label>
+        <label class="setting-row hide-setting" id="show-hide-setting" for="show-hide-buttons">
           <span class="setting-label">Show hide buttons</span>
           <input id="show-hide-buttons" type="checkbox" checked>
         </label>
+        <label class="setting-row hide-setting" id="hide-name-setting" for="hide-name-with-email">
+          <span class="setting-label">Hide name when email is hidden</span>
+          <input id="hide-name-with-email" type="checkbox">
+        </label>
+        <label class="setting-row hide-setting" id="hide-locked-setting" for="hide-buttons-when-locked">
+          <span class="setting-label">Hide eye buttons while locked</span>
+          <input id="hide-buttons-when-locked" type="checkbox" checked>
+        </label>
+        <h3 class="settings-subheading">Features</h3>
+        <label class="setting-row hide-setting" for="feature-search-sort">
+          <span class="setting-label">Search and sort</span>
+          <input id="feature-search-sort" type="checkbox" checked data-feature="searchSort">
+        </label>
+        <label class="setting-row hide-setting" for="feature-email-hiding">
+          <span class="setting-label">Hide emails</span>
+          <input id="feature-email-hiding" type="checkbox" checked data-feature="emailHiding">
+        </label>
+        <label class="setting-row hide-setting" for="feature-email-colors">
+          <span class="setting-label">Email dot colors</span>
+          <input id="feature-email-colors" type="checkbox" checked data-feature="emailColors">
+        </label>
+        <label class="setting-row hide-setting" for="feature-import-export">
+          <span class="setting-label">Import and export</span>
+          <input id="feature-import-export" type="checkbox" checked data-feature="importExport">
+        </label>
+        <label class="setting-row hide-setting" for="feature-editing-lock">
+          <span class="setting-label">Editing lock</span>
+          <input id="feature-editing-lock" type="checkbox" checked data-feature="editingLock">
+        </label>
+        <label class="setting-row hide-setting" for="feature-email-validation">
+          <span class="setting-label">Email validation</span>
+          <input id="feature-email-validation" type="checkbox" checked data-feature="emailValidation">
+        </label>
+        <div id="backup-controls" class="feature-backups">
+          <div class="backup-row">
+            <span class="setting-label">Settings backup</span>
+            <div class="backup-actions">
+              <button class="backup-button" id="export-settings" type="button">Export</button>
+              <button class="backup-button" id="import-settings" type="button">Import</button>
+              <input id="settings-file" type="file" accept=".json,application/json" hidden>
+            </div>
+          </div>
+          <div class="backup-row">
+            <span class="setting-label">Email backup</span>
+            <div class="backup-actions">
+              <button class="backup-button" id="export-emails" type="button">Export</button>
+              <button class="backup-button" id="import-emails" type="button">Import</button>
+              <input id="emails-file" type="file" accept=".json,.txt,.csv,application/json,text/plain,text/csv" hidden>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section class="email-section" aria-labelledby="list-title">
         <div class="section-heading"><h2 id="list-title">Email addresses</h2><span class="count" id="email-count">1</span></div>
+        <div class="list-tools" id="list-tools">
+          <label class="search-control" for="email-search">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.8" cy="8.8" r="5.8" stroke="currentColor" stroke-width="1.5"/><path d="m13 13 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <input id="email-search" type="search" placeholder="Search emails" autocomplete="off">
+          </label>
+          <label class="sort-control" for="email-sort">
+            <span class="sr-only">Sort emails</span>
+            <select id="email-sort">
+              <option value="custom">Custom</option>
+              <option value="name">Name A–Z</option>
+              <option value="email">Email A–Z</option>
+              <option value="newest">Newest</option>
+            </select>
+          </label>
+        </div>
         <div id="email-list" class="email-list"></div>
+        <p class="empty-state" id="email-empty" hidden>No matching emails.</p>
         <button class="add-button" id="add-email" type="button"><span class="plus" aria-hidden="true">+</span><span>Add another email</span></button>
       </section>
 
@@ -64,6 +153,14 @@
       <div class="dialog-actions">
         <button class="dialog-cancel" id="cancel-remove" type="button">Cancel</button>
         <button class="dialog-confirm" id="confirm-remove-button" type="button">Remove</button>
+      </div>
+    </dialog>
+    <dialog class="confirm-dialog" id="confirm-import" aria-labelledby="confirm-import-title">
+      <h2 id="confirm-import-title">Replace email list?</h2>
+      <p id="confirm-import-message">Importing this file will replace your current email addresses.</p>
+      <div class="dialog-actions">
+        <button class="dialog-cancel" id="cancel-import" type="button">Cancel</button>
+        <button class="dialog-confirm" id="confirm-import-button" type="button">Replace list</button>
       </div>
     </dialog>
     <script src="popup.js"></script>
