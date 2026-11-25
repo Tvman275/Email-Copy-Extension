@@ -40,4 +40,4 @@ The popup uses no remote code, external libraries, or network access.
 
 _Notice:This is Made with Codex And ChatGPT_
 
-_Unless otherwise noted, this project’s content is licensed under CC BY-NC 4.0. Attribution is required, and commercial use is not permitted._ 
+_Unless otherwise noted, this project’s content is licensed under [CC BY-NC 4.0]([https://www.example.com](https://creativecommons.org/licenses/by-nc/4.0/deed.en)). Attribution is required, and commercial use is not permitted._ 
